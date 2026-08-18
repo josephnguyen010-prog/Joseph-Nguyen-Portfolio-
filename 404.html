@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Joseph Nguyen — Portfolio</title>
+<!-- Catches any DEEP link under the old path, e.g. /arrivals/ or the resume PDF,
+     and rewrites just the repo segment so the rest of the path is preserved.
+     GitHub Pages serves this file for any path it cannot find. -->
+<meta name="robots" content="noindex">
+<script>
+  (function () {
+    var NEW = "/Joseph-Nguyen-Portfolio/";
+    var path = location.pathname.replace(/^\/Joseph-Nguyen-Portfolio-\//, NEW);
+    // If the rewrite did not apply, fall back to the site root rather than
+    // forwarding a path that will 404 again on the other side.
+    if (path === location.pathname) { path = NEW; }
+    location.replace(location.origin + path + location.search + location.hash);
+  })();
+</script>
+<!-- No-JS fallback. Delayed so the path-preserving redirect above wins when
+     scripting is available; this only lands people on the homepage. -->
+<meta http-equiv="refresh" content="1; url=https://josephnguyen010-prog.github.io/Joseph-Nguyen-Portfolio/">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         display: grid; place-items: center; min-height: 100vh; margin: 0;
+         background: #f7f7f8; color: #1b1b1f; text-align: center; padding: 1.5rem; }
+  a { color: #6b3fa0; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #14141a; color: #eeeef2; } a { color: #b899e0; }
+  }
+</style>
+</head>
+<body>
+  <main>
+    <p>This portfolio has moved.</p>
+    <p><a href="https://josephnguyen010-prog.github.io/Joseph-Nguyen-Portfolio/">Continue to Joseph Nguyen's portfolio →</a></p>
+  </main>
+</body>
+</html>
