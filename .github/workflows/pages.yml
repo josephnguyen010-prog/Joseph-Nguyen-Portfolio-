@@ -1,0 +1,41 @@
+# Publishes the three static files in this repo to GitHub Pages.
+#
+# Needed because this repo's Pages source is "GitHub Actions" rather than
+# "Deploy from a branch" - with that source and no workflow, nothing ever
+# builds and the site 404s even though Pages shows as enabled.
+name: Deploy to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race; let an in-flight one finish rather than
+# cancelling it half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+        with:
+          # Turns Pages on if it is not already configured, so this works
+          # without anyone touching the repo settings by hand.
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
